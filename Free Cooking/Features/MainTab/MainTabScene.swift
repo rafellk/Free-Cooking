@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainTabScene: View {
+    
+    private var screenWidth: CGFloat = UIScreen.main.bounds.width - 32
+    @State private var selectedTab = "Inspirations"
 
     private var tabs = [
         TabItem(title: "Inspirations", icon: "lightbulb"),
@@ -15,8 +18,6 @@ struct MainTabScene: View {
         TabItem(title: "Cook now!", icon: "timer"),
         TabItem(title: "Settings", icon: "gearshape"),
     ]
-    private var screenWidth: CGFloat = UIScreen.main.bounds.width - 32
-    @State private var selectedTab = "Inspirations"
 
     var body: some View {
         ZStack {

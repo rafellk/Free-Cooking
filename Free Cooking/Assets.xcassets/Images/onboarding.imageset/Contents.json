@@ -7,13 +7,49 @@
       "scale" : "1x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "onboarding_dark.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "1x"
+    },
+    {
       "filename" : "onboarding@2x.png",
       "idiom" : "universal",
       "locale" : "FREEBIE",
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "onboarding_dark@2x.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "2x"
+    },
+    {
       "filename" : "onboarding@3x.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "onboarding_dark@3x.png",
       "idiom" : "universal",
       "locale" : "FREEBIE",
       "scale" : "3x"

@@ -12,4 +12,5 @@ extension Color {
     static let clockBackground = Color("clockBackground")
     static let primaryLabel = Color("primaryLabel")
     static let tabIcon = Color("tabIcon")
+    static let cardBackground = Color("cardBackground")
 }

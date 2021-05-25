@@ -29,11 +29,13 @@ struct OnboardingScene: View {
                         Image("onboarding")
                             .padding(.bottom, 48)
                         Text("All the recipes on your fingertips")
+                            .foregroundColor(.primaryLabel)
                             .font(.system(size: 30))
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.center)
                             .padding(.bottom, 10)
                         Text("Cooking on Termomix made easy")
+                            .foregroundColor(.primaryLabel)
                             .font(.system(size: 16))
                             .fontWeight(.light)
                             .multilineTextAlignment(.center)
@@ -46,10 +48,10 @@ struct OnboardingScene: View {
                         Text("Let's Start")
                             .font(.system(size: 16))
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.defaultBackground)
                             .padding()
                             .frame(minWidth: 0, maxWidth: .infinity)
-                            .background(Color.black)
+                            .background(Color.primaryLabel)
                             .cornerRadius(8)
                             .padding([.leading, .trailing], 16)
                             .padding(.bottom, 16)
@@ -65,7 +67,7 @@ struct OnboardingScene_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             OnboardingScene()
-                .previewDevice("iPhone SE (1st generation)")
+                .preferredColorScheme(.dark)
             OnboardingScene()
         }
     }
