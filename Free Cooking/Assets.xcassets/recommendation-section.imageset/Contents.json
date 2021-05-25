@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "filename" : "recommendation-section.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "recommendation-section@2x.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "recommendation-section@3x.png",
+      "idiom" : "universal",
+      "locale" : "FREEBIE",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

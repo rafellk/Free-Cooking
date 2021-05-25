@@ -11,7 +11,7 @@ import SwiftUI
 struct Free_CookingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnboardingScene()
         }
     }
 }

@@ -8,18 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		712849012652DA0600C51ED5 /* Free_CookingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712849002652DA0600C51ED5 /* Free_CookingApp.swift */; };
-		712849032652DA0600C51ED5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712849022652DA0600C51ED5 /* ContentView.swift */; };
+		712849032652DA0600C51ED5 /* OnboardingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712849022652DA0600C51ED5 /* OnboardingScene.swift */; };
 		712849052652DA0800C51ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 712849042652DA0800C51ED5 /* Assets.xcassets */; };
 		712849082652DA0800C51ED5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 712849072652DA0800C51ED5 /* Preview Assets.xcassets */; };
+		7142FD56265731D1001DE2DB /* CookNowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7142FD55265731D1001DE2DB /* CookNowScene.swift */; };
+		718673D72652E15000682517 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718673D62652E15000682517 /* Colors.swift */; };
+		718673DC2652EA9D00682517 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718673DB2652EA9D00682517 /* UINavigationBar+Extension.swift */; };
+		718673E52652ECC600682517 /* MainTabScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718673E42652ECC600682517 /* MainTabScene.swift */; };
+		718673EA2652F0FB00682517 /* InspirationsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718673E92652F0FB00682517 /* InspirationsScene.swift */; };
+		718673F12652F4F700682517 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718673F02652F4F700682517 /* NavigationTitleView.swift */; };
+		71B49CE52655B70800FA5803 /* MyRecipesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CE42655B70800FA5803 /* MyRecipesScene.swift */; };
+		71B49CEB2655B78900FA5803 /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */; };
+		71B49CEF2655BAD400FA5803 /* TimeAndPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		712848FD2652DA0600C51ED5 /* Free Cooking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Free Cooking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		712849002652DA0600C51ED5 /* Free_CookingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Free_CookingApp.swift; sourceTree = "<group>"; };
-		712849022652DA0600C51ED5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		712849022652DA0600C51ED5 /* OnboardingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScene.swift; sourceTree = "<group>"; };
 		712849042652DA0800C51ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		712849072652DA0800C51ED5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		712849092652DA0800C51ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7142FD55265731D1001DE2DB /* CookNowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookNowScene.swift; sourceTree = "<group>"; };
+		718673D62652E15000682517 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		718673DB2652EA9D00682517 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		718673E42652ECC600682517 /* MainTabScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabScene.swift; sourceTree = "<group>"; };
+		718673E92652F0FB00682517 /* InspirationsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspirationsScene.swift; sourceTree = "<group>"; };
+		718673F02652F4F700682517 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
+		71B49CE42655B70800FA5803 /* MyRecipesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesScene.swift; sourceTree = "<group>"; };
+		71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
+		71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndPeopleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +70,9 @@
 		712848FF2652DA0600C51ED5 /* Free Cooking */ = {
 			isa = PBXGroup;
 			children = (
+				718673E12652EC2700682517 /* Features */,
+				718673D52652E14800682517 /* Utils */,
 				712849002652DA0600C51ED5 /* Free_CookingApp.swift */,
-				712849022652DA0600C51ED5 /* ContentView.swift */,
 				712849042652DA0800C51ED5 /* Assets.xcassets */,
 				712849092652DA0800C51ED5 /* Info.plist */,
 				712849062652DA0800C51ED5 /* Preview Content */,
@@ -67,6 +86,78 @@
 				712849072652DA0800C51ED5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		718673D52652E14800682517 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				718673D62652E15000682517 /* Colors.swift */,
+				718673DB2652EA9D00682517 /* UINavigationBar+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		718673E12652EC2700682517 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				718673EE2652F4DE00682517 /* Components */,
+				718673E32652EC3B00682517 /* MainTab */,
+				718673E22652EC2B00682517 /* Onboarding */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		718673E22652EC2B00682517 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				712849022652DA0600C51ED5 /* OnboardingScene.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		718673E32652EC3B00682517 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				71B49CE92655B76C00FA5803 /* Cook Now */,
+				71B49CE32655B6F600FA5803 /* My Recipes */,
+				718673E82652F0EB00682517 /* Inspirations */,
+				718673E42652ECC600682517 /* MainTabScene.swift */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		718673E82652F0EB00682517 /* Inspirations */ = {
+			isa = PBXGroup;
+			children = (
+				718673E92652F0FB00682517 /* InspirationsScene.swift */,
+			);
+			path = Inspirations;
+			sourceTree = "<group>";
+		};
+		718673EE2652F4DE00682517 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				718673F02652F4F700682517 /* NavigationTitleView.swift */,
+				71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */,
+				71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		71B49CE32655B6F600FA5803 /* My Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				71B49CE42655B70800FA5803 /* MyRecipesScene.swift */,
+			);
+			path = "My Recipes";
+			sourceTree = "<group>";
+		};
+		71B49CE92655B76C00FA5803 /* Cook Now */ = {
+			isa = PBXGroup;
+			children = (
+				7142FD55265731D1001DE2DB /* CookNowScene.swift */,
+			);
+			path = "Cook Now";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +229,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				712849032652DA0600C51ED5 /* ContentView.swift in Sources */,
+				712849032652DA0600C51ED5 /* OnboardingScene.swift in Sources */,
+				718673F12652F4F700682517 /* NavigationTitleView.swift in Sources */,
+				718673EA2652F0FB00682517 /* InspirationsScene.swift in Sources */,
+				71B49CE52655B70800FA5803 /* MyRecipesScene.swift in Sources */,
+				71B49CEF2655BAD400FA5803 /* TimeAndPeopleView.swift in Sources */,
+				7142FD56265731D1001DE2DB /* CookNowScene.swift in Sources */,
+				718673DC2652EA9D00682517 /* UINavigationBar+Extension.swift in Sources */,
+				718673E52652ECC600682517 /* MainTabScene.swift in Sources */,
+				71B49CEB2655B78900FA5803 /* SearchNavigationView.swift in Sources */,
+				718673D72652E15000682517 /* Colors.swift in Sources */,
 				712849012652DA0600C51ED5 /* Free_CookingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Free Cooking/Preview Content\"";
+				DEVELOPMENT_TEAM = DU28R9GF96;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Free Cooking/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -276,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rlmg.Free-Cooking";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rlmg.Free-Cooking-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -290,6 +391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Free Cooking/Preview Content\"";
+				DEVELOPMENT_TEAM = DU28R9GF96;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Free Cooking/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -297,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rlmg.Free-Cooking";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rlmg.Free-Cooking-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

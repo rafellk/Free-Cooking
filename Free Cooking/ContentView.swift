@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct OnboardingScene: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Hello bae!")
             .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        OnboardingScene()
     }
 }
