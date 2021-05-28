@@ -95,7 +95,7 @@ struct MainTabScene_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainTabScene()
-                .previewDevice("iPhone SE (1st generation)")
+                .preferredColorScheme(.dark)
             MainTabScene()
         }
     }

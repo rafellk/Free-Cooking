@@ -13,4 +13,6 @@ extension Color {
     static let primaryLabel = Color("primaryLabel")
     static let tabIcon = Color("tabIcon")
     static let cardBackground = Color("cardBackground")
+    static let browseMoreButtonBackground = Color("browseMoreButtonBackground")
+    static let browseMoreButtonBorder = Color("browseMoreButtonBorder")
 }

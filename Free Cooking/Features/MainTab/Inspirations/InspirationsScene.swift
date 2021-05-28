@@ -90,7 +90,7 @@ private struct HeaderSectionItemView: View {
             }
         }
         .padding(8)
-        .background(Color.white)
+        .background(Color.cardBackground)
         .cornerRadius(8)
         .frame(width: 275)
     }
@@ -131,19 +131,21 @@ private struct RecommendationsSectionView: View {
                     .fontWeight(.thin)
             }
             .padding(24)
-            .background(Color.white)
+            .background(Color.cardBackground)
             .cornerRadius(8)
             Spacer(minLength: 16)
             NavigationLink(destination: Text("Not yet implemented")) {
-                Text("Browse more receipes")
-                    .foregroundColor(Color.black)
+                Text("Browse more recipes")
+                    .foregroundColor(Color.primaryLabel)
                     .font(.system(size: 18))
                     .fontWeight(.bold)
                     .padding()
                     .frame(minWidth: 0, maxWidth: .infinity)
+                    .background(Color.browseMoreButtonBackground)
+                    .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1.4)
+                            .stroke(Color.browseMoreButtonBorder, lineWidth: 1.4)
                     )
                     .padding([.leading, .trailing], 1)
                     .padding(.bottom, 16)
@@ -155,7 +157,7 @@ private struct RecommendationsSectionView: View {
 struct InspirationsScene_Previews: PreviewProvider {
     static var previews: some View {
         InspirationsScene()
-            .previewDevice("iPhone SE (1st generation)")
+            .preferredColorScheme(.dark).preferredColorScheme(.dark)
         InspirationsScene()
     }
 }
