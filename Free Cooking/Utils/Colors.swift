@@ -15,4 +15,7 @@ extension Color {
     static let cardBackground = Color("cardBackground")
     static let browseMoreButtonBackground = Color("browseMoreButtonBackground")
     static let browseMoreButtonBorder = Color("browseMoreButtonBorder")
+    static let stepCounterFilledStroke = Color("stepCounterFilledStroke")
+    static let stepCounterEmptyStroke = Color("stepCounterEmptyStroke")
+    static let selectedTab = Color("selectedTab")
 }

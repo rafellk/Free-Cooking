@@ -62,24 +62,25 @@ private struct StepCounter: View {
         let availableWidth = (UIScreen.main.bounds.width - 32) * 0.6
         ZStack {
             ZStack {
-                RadialGradient(gradient: Gradient(colors: [.white, .gray]),
+                RadialGradient(gradient: Gradient(colors: [.cardBackground, .gray]),
                                center: .center,
                                startRadius: 2,
                                endRadius: 650)
                     .frame(width: availableWidth, height: availableWidth)
                     .cornerRadius(availableWidth / 2)
                     .shadow(color: Color.black.opacity(0.1), radius: 10, x: 20, y: 20)
-                    .shadow(color: Color.white.opacity(0.5), radius: 10, x: -20, y: -20)
+                    .shadow(color: Color.white.opacity(0.1), radius: 10, x: -20, y: -20)
                 ArcView(currentStep: 0, size: availableWidth + 32, count: count)
             }
             VStack(spacing: 8) {
                 Text("Program")
                     .font(.system(size: 16))
                     .fontWeight(.medium)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color.primaryLabel)
                 Text("\(currentStep)")
                     .font(.system(size: 56))
                     .fontWeight(.medium)
+                    .foregroundColor(Color.primaryLabel)
             }
         }
     }
@@ -113,21 +114,13 @@ private struct ArcView: View {
         let range: CGFloat = (100 - offset) / CGFloat(count)
         
         (0..<count).forEach {
-//            if $0 == count - 1 {
-//                let from = (range * CGFloat($0)) + (offset / 2)
-//                let to = from + range
-//                models.append(ArcViewModel(
-//                                from: from / 100,
-//                                to: to / 100,
-//                                color: $0 <= currentStep ? .black : Color.gray.opacity(0.4)))
-//            } else {
-                let from = (range * CGFloat($0)) + (offset / 2)
-                let to = from + range - (offset / 2)
-                models.append(ArcViewModel(
-                                from: from / 100,
-                                to: to / 100,
-                                color: $0 <= currentStep ? .black : Color.gray.opacity(0.4)))
-//            }
+            let from = (range * CGFloat($0)) + (offset / 2)
+            let to = from + range - (offset / 2)
+            models.append(ArcViewModel(
+                            from: from / 100,
+                            to: to / 100,
+                            color: $0 <= currentStep ? Color.stepCounterFilledStroke :
+                                Color.stepCounterEmptyStroke))
         }
     }
     
@@ -200,7 +193,7 @@ private struct InstructionsCardView: View {
                 .multilineTextAlignment(.leading)
         }
         .padding(24)
-        .background(Color.white)
+        .background(Color.cardBackground)
         .cornerRadius(8)
     }
 }
@@ -208,7 +201,7 @@ private struct InstructionsCardView: View {
 struct CookNowScene_Previews: PreviewProvider {
     static var previews: some View {
         CookNowScene()
-            .previewDevice("iPhone SE (1st generation)")
+            .preferredColorScheme(.dark)
         CookNowScene()
     }
 }

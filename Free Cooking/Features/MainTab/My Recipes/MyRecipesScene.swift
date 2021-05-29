@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyRecipesScene: View {
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -112,8 +113,7 @@ private struct RecipesView: View {
             TimeAndPeopleView(time: time, people: people, spaced: true)
         }
         .padding()
-        //        .frame(width: (UIScreen.main.bounds.size.width - 32) / 2 - 8)
-        .background(Color.white)
+        .background(Color.cardBackground)
         .cornerRadius(8)
     }
 }
@@ -122,7 +122,7 @@ struct MyRecipes_Previews: PreviewProvider {
     
     static var previews: some View {
         MyRecipesScene()
-            .previewDevice("iPhone SE (1st generation)")
+            .preferredColorScheme(.dark)
         MyRecipesScene()
     }
 }

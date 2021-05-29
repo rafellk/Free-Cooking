@@ -43,13 +43,13 @@ struct MainTabScene: View {
                         TabItemView(tab: tab, selectedTab: $selectedTab)
                             .frame(width: (screenWidth - 40) / 4)
                             .padding([.top, .bottom], 8)
-                            .background(tab.title == selectedTab ? Color.black : Color.white)
+                            .background(tab.title == selectedTab ? Color.selectedTab : Color.cardBackground)
                             .cornerRadius(8)
                         Spacer()
                     }
                 }
                 .padding([.top, .bottom], 8)
-                .background(Color.white)
+                .background(Color.cardBackground)
                 .cornerRadius(8)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
                 .padding([.leading, .trailing], 16)
@@ -69,10 +69,10 @@ private struct TabItemView: View {
         VStack(spacing: 4) {
             Image(systemName: tab.icon)
                 .frame(width: 20, height: 20)
-                .foregroundColor(tab.title == selectedTab ? Color.white : Color.black)
+                .foregroundColor(tab.title == selectedTab ? Color.cardBackground : Color.selectedTab)
             Text(tab.title)
                 .font(.system(size: 12))
-                .foregroundColor(tab.title == selectedTab ? Color.white : Color.black)
+                .foregroundColor(tab.title == selectedTab ? Color.cardBackground : Color.selectedTab)
         }
         .onTapGesture {
             withAnimation { selectedTab = tab.title }

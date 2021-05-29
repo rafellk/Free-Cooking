@@ -89,7 +89,7 @@ private struct HeaderSectionItemView: View {
                     .aspectRatio(contentMode: .fit)
             }
         }
-        .padding(8)
+        .padding(24)
         .background(Color.cardBackground)
         .cornerRadius(8)
         .frame(width: 275)
@@ -157,7 +157,7 @@ private struct RecommendationsSectionView: View {
 struct InspirationsScene_Previews: PreviewProvider {
     static var previews: some View {
         InspirationsScene()
-            .preferredColorScheme(.dark).preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
         InspirationsScene()
     }
 }
