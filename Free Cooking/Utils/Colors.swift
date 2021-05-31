@@ -18,4 +18,5 @@ extension Color {
     static let stepCounterFilledStroke = Color("stepCounterFilledStroke")
     static let stepCounterEmptyStroke = Color("stepCounterEmptyStroke")
     static let selectedTab = Color("selectedTab")
+    static let selectedStep = Color("selectedStep")
 }

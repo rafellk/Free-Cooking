@@ -8,42 +8,80 @@
 import SwiftUI
 
 struct CookNowScene: View {
+
+    @State private var y: CGFloat = 250
+    @State private var count = 0
+    private let numberOfItems: CGFloat = 6
+    private let itemHeight: CGFloat = 250
+
     var body: some View {
         ZStack {
             Color.defaultBackground
                 .ignoresSafeArea()
             VStack {
-                Spacer()
-                NavigationTitleView(title: "Its cooking time!")
-                Spacer()
-                InstructionsCardView()
-                    .padding()
-                Spacer()
-                StepCounter(count: 10, currentStep: 3)
-                Spacer(minLength: 16)
-                HStack(spacing: 8) {
-                    Text("Previous")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.black)
-                        .padding()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                        .padding([.leading, .trailing], 16)
-                        .padding(.bottom, 16)
-                    Text("Next")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .background(Color.black)
-                        .cornerRadius(8)
-                        .padding([.leading, .trailing], 16)
-                        .padding(.bottom, 16)
+                VStack(spacing: 0) {
+                    ForEach(0..<Int(numberOfItems) - 1) { value in
+                        InstructionsCardView(selected: value == count)
+                            .padding([.leading, .trailing], 16)
+                        Spacer(minLength: 12)
+                            .opacity(value == count ? 1 : 0)
+                    }
+                }
+                .offset(y: self.y)
+                .highPriorityGesture(DragGesture()
+                                        .onEnded({ value in
+                                            if value.translation.height > 0 {
+                                                self.count -= 1
+                                                if self.y + itemHeight > itemHeight {
+                                                    self.y = itemHeight - 12
+                                                    self.count = 0
+                                                } else {
+                                                    self.y += itemHeight - 12
+                                                }
+                                            } else {
+                                                self.count += 1
+                                                if self.y - itemHeight < -(itemHeight * (numberOfItems - 3)) {
+                                                    self.y = -((itemHeight - 12) * (numberOfItems - 3))
+                                                    self.count = Int(numberOfItems - 2)
+                                                } else {
+                                                    self.y -= (itemHeight - 12)
+                                                }
+                                            }
+                                        }))
+                .animation(.spring())
+            }
+            ZStack {
+                VStack {
+                    Image("recommendation-section")
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width, height: 250)
+                        .aspectRatio(contentMode: .fit)
+                    Spacer()
+                }
+                .ignoresSafeArea()
+                VStack {
+                    Color.black
+                        .opacity(0.8)
+                        .frame(width: UIScreen.main.bounds.width, height: 250)
+                        .aspectRatio(contentMode: .fit)
+                    Spacer()
+                }
+                .ignoresSafeArea()
+                VStack() {
+                    HStack {
+                        NavigationTitleView(title: "Italian pasta",
+                                            fontSize: 48,
+                                            fontWeigth: .regular,
+                                            fontColor: .white)
+                            .padding(.top, 120)
+                            .padding([.leading, .trailing], 24)
+                        Spacer()
+                    }
+                    Spacer()
                 }
             }
+            .offset(y: self.count > 0 ? -500 : 0)
+            .animation(.spring())
         }
     }
 }
@@ -165,36 +203,37 @@ private struct ArcView: View {
 //}
 
 private struct InstructionsCardView: View {
+
+    var selected: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Text("Step 1/10")
                     .font(.system(size: 12))
+                    .foregroundColor(selected ? Color.white : .primaryLabel)
                 Spacer()
-                HStack(spacing: 4) {
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .frame(width: 12, height: 12, alignment: .center)
-                    Text("Connected to TM6")
-                        .font(.system(size: 12))
-                }
             }
             Text("Start with basics")
-                .font(.system(size: 18))
+                .font(.system(size: 22))
                 .fontWeight(.medium)
+                .foregroundColor(selected ? Color.white : .primaryLabel)
+            Spacer()
             Text("""
             Chop pumpkin and sweet potato into small chunks, put them to the bowl.
 
             Then add water and paprika. Select program no. 3 and cook for 20 mins.
             """)
-                .fontWeight(.thin)
+                .fontWeight(.light)
                 .font(.system(size: 16))
                 .multilineTextAlignment(.leading)
+                .foregroundColor(selected ? Color.white : .primaryLabel)
         }
         .padding(24)
-        .background(Color.cardBackground)
+        .frame(height: selected ? 250 : 250 - 12)
+        .background(selected ? Color.selectedStep : Color.cardBackground)
         .cornerRadius(8)
+        .padding([.leading, .trailing], selected ? 0 : 12)
     }
 }
 
