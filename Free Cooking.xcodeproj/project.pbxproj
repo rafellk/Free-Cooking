@@ -20,6 +20,7 @@
 		71B49CE52655B70800FA5803 /* MyRecipesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CE42655B70800FA5803 /* MyRecipesScene.swift */; };
 		71B49CEB2655B78900FA5803 /* SearchNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */; };
 		71B49CEF2655BAD400FA5803 /* TimeAndPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */; };
+		877CCF1E266BF2750057ACB9 /* ArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CCF1D266BF2750057ACB9 /* ArcView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		71B49CE42655B70800FA5803 /* MyRecipesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesScene.swift; sourceTree = "<group>"; };
 		71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationView.swift; sourceTree = "<group>"; };
 		71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndPeopleView.swift; sourceTree = "<group>"; };
+		877CCF1D266BF2750057ACB9 /* ArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				718673F02652F4F700682517 /* NavigationTitleView.swift */,
 				71B49CEA2655B78900FA5803 /* SearchNavigationView.swift */,
 				71B49CEE2655BAD400FA5803 /* TimeAndPeopleView.swift */,
+				877CCF1D266BF2750057ACB9 /* ArcView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				718673DC2652EA9D00682517 /* UINavigationBar+Extension.swift in Sources */,
 				718673E52652ECC600682517 /* MainTabScene.swift in Sources */,
 				71B49CEB2655B78900FA5803 /* SearchNavigationView.swift in Sources */,
+				877CCF1E266BF2750057ACB9 /* ArcView.swift in Sources */,
 				718673D72652E15000682517 /* Colors.swift in Sources */,
 				712849012652DA0600C51ED5 /* Free_CookingApp.swift in Sources */,
 			);

@@ -10,46 +10,26 @@ import SwiftUI
 struct CookNowScene: View {
 
     @State private var y: CGFloat = 250
-    @State private var count = 0
-    private let numberOfItems: CGFloat = 6
-    private let itemHeight: CGFloat = 250
+    @State private var current = 0
+
+    private let originalPosition: CGFloat = 250
+    private let items: [InstructionsCardView.Model] = Array.init(
+        repeating: InstructionsCardView.Model(currentStep: 1,
+                                              numberOfSteps: 10,
+                                              headline: "Start with the basics",
+                                              instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+
+                                                                    Then add water and paprika. Select program no. 3 and cook for 20 mins.
+                                                                    """,
+                                              availableWidth: UIScreen.main.bounds.width),
+        count: 6)
 
     var body: some View {
         ZStack {
             Color.defaultBackground
                 .ignoresSafeArea()
-            VStack {
-                VStack(spacing: 0) {
-                    ForEach(0..<Int(numberOfItems) - 1) { value in
-                        InstructionsCardView(selected: value == count)
-                            .padding([.leading, .trailing], 16)
-                        Spacer(minLength: 12)
-                            .opacity(value == count ? 1 : 0)
-                    }
-                }
-                .offset(y: self.y)
-                .highPriorityGesture(DragGesture()
-                                        .onEnded({ value in
-                                            if value.translation.height > 0 {
-                                                self.count -= 1
-                                                if self.y + itemHeight > itemHeight {
-                                                    self.y = itemHeight - 12
-                                                    self.count = 0
-                                                } else {
-                                                    self.y += itemHeight - 12
-                                                }
-                                            } else {
-                                                self.count += 1
-                                                if self.y - itemHeight < -(itemHeight * (numberOfItems - 3)) {
-                                                    self.y = -((itemHeight - 12) * (numberOfItems - 3))
-                                                    self.count = Int(numberOfItems - 2)
-                                                } else {
-                                                    self.y -= (itemHeight - 12)
-                                                }
-                                            }
-                                        }))
-                .animation(.spring())
-            }
+            carrouselView
             ZStack {
                 VStack {
                     Image("recommendation-section")
@@ -80,160 +60,119 @@ struct CookNowScene: View {
                     Spacer()
                 }
             }
-            .offset(y: self.count > 0 ? -500 : 0)
+            .offset(y: self.current > 0 ? -500 : 0)
             .animation(.spring())
         }
     }
-}
 
-private struct StepCounter: View {
-    
-    private let count: Int
-    private let currentStep: Int
-    
-    init(count: Int, currentStep: Int) {
-        self.count = count
-        self.currentStep = currentStep
-    }
-    
-    var body: some View {
-        let availableWidth = (UIScreen.main.bounds.width - 32) * 0.6
-        ZStack {
-            ZStack {
-                RadialGradient(gradient: Gradient(colors: [.cardBackground, .gray]),
-                               center: .center,
-                               startRadius: 2,
-                               endRadius: 650)
-                    .frame(width: availableWidth, height: availableWidth)
-                    .cornerRadius(availableWidth / 2)
-                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 20, y: 20)
-                    .shadow(color: Color.white.opacity(0.1), radius: 10, x: -20, y: -20)
-                ArcView(currentStep: 0, size: availableWidth + 32, count: count)
-            }
-            VStack(spacing: 8) {
-                Text("Program")
-                    .font(.system(size: 16))
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.primaryLabel)
-                Text("\(currentStep)")
-                    .font(.system(size: 56))
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.primaryLabel)
+    var carrouselView: some View {
+        VStack(spacing: 0) {
+            ForEach(0..<items.count) { value in
+                InstructionsCardView(model: items[value], selected: value == current)
+                    .padding([.leading, .trailing], 16)
+                Spacer(minLength: 12)
+                    .opacity(value == current ? 1 : 0)
             }
         }
-    }
-}
+        .offset(y: self.y)
+        .highPriorityGesture(DragGesture().onEnded({ value in
+            let numberOfItems: CGFloat = CGFloat(items.count)
 
-private struct ArcView: View {
-    
-    private struct ArcViewModel: Hashable {
-        let from: CGFloat
-        let to: CGFloat
-        let color: Color
-        
-        init(from: CGFloat, to: CGFloat, color: Color) {
-            self.from = from
-            self.to = to
-            self.color = color
-        }
-    }
-    
-    private let size: CGFloat
-    private let count: Int
-    private let currentStep: Int
-    private var models = [ArcViewModel]()
-    
-    init(currentStep: Int, size: CGFloat, count: Int) {
-        self.size = size
-        self.count = count
-        self.currentStep = currentStep
-        
-        let offset: CGFloat = 1
-        let range: CGFloat = (100 - offset) / CGFloat(count)
-        
-        (0..<count).forEach {
-            let from = (range * CGFloat($0)) + (offset / 2)
-            let to = from + range - (offset / 2)
-            models.append(ArcViewModel(
-                            from: from / 100,
-                            to: to / 100,
-                            color: $0 <= currentStep ? Color.stepCounterFilledStroke :
-                                Color.stepCounterEmptyStroke))
-        }
-    }
-    
-    var body: some View {
-        ZStack {
-            ForEach(0..<models.count, id: \.self) {
-                Circle()
-                    .trim(from: self.models[$0].from, to: self.models[$0].to)
-                    .rotation(.degrees(-90))
-                    .stroke(self.models[$0].color, style: StrokeStyle(lineWidth: 5))
-                    .frame(width: size, height: size)
+            // Going up
+            if value.translation.height > 0 {
+                let previous = self.current
+                self.current -= 1
+                self.current = max(0, self.current)
+                print("going up current: \(self.current)")
+                print("going up item size: \(self.items[self.current].size)")
+
+                if self.y + self.items[self.current].size > self.items[self.current].size {
+                    self.y = self.originalPosition
+                } else if previous != self.items.count - 1 {
+                    self.y += self.items[self.current].size - 12
+                }
+            } else { // Going down
+                self.current += 1
+                self.current = min(self.items.count - 1, self.current)
+                print("going down current: \(self.current)")
+                print("going down item size: \(self.items[self.current].size)")
+
+                if !(self.y - self.items[self.current].size < -(self.items[self.current].size * (numberOfItems - 3))) {
+                    self.y -= (self.items[self.current].size - 12)
+                }
             }
-        }
+        }))
+        .animation(.spring())
     }
 }
-
-//private struct ArcShape: Shape {
-//
-//    private let center: CGPoint
-//    private let radius: CGFloat
-//    private let startAngle: Angle
-//    private let endAngle: Angle
-//
-//    internal init(center: CGPoint, radius: CGFloat, startAngle: Angle, endAngle: Angle) {
-//        self.center = center
-//        self.radius = radius
-//        self.startAngle = startAngle
-//        self.endAngle = endAngle
-//    }
-//
-//    func path(in rect: CGRect) -> Path {
-//        var p = Path()
-//
-//        p.addArc(center: center,
-//                 radius: radius,
-//                 startAngle: startAngle,
-//                 endAngle: endAngle,
-//                 clockwise: true)
-//
-//        return p.strokedPath(.init(lineWidth: 3))
-//    }
-//}
 
 private struct InstructionsCardView: View {
 
+    var model: Model
     var selected: Bool
-    
+
+    init(model: Model, selected: Bool) {
+        self.model = model
+        self.selected = selected
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Step 1/10")
+                Text("Step \(model.currentStep)/\(model.numberOfSteps)")
                     .font(.system(size: 12))
-                    .foregroundColor(selected ? Color.white : .primaryLabel)
+                    .foregroundColor(selected == true ? Color.white : .primaryLabel)
                 Spacer()
             }
-            Text("Start with basics")
+            Text(model.headline)
                 .font(.system(size: 22))
                 .fontWeight(.medium)
-                .foregroundColor(selected ? Color.white : .primaryLabel)
-            Spacer()
-            Text("""
-            Chop pumpkin and sweet potato into small chunks, put them to the bowl.
-
-            Then add water and paprika. Select program no. 3 and cook for 20 mins.
-            """)
+                .foregroundColor(selected == true ? Color.white : .primaryLabel)
+            Text(model.instructions)
                 .fontWeight(.light)
                 .font(.system(size: 16))
                 .multilineTextAlignment(.leading)
-                .foregroundColor(selected ? Color.white : .primaryLabel)
+                .foregroundColor(selected == true ? Color.white : .primaryLabel)
         }
         .padding(24)
-        .frame(height: selected ? 250 : 250 - 12)
-        .background(selected ? Color.selectedStep : Color.cardBackground)
+        .frame(height: selected == true ? model.size : model.size - 12)
+        .background(selected == true ? Color.selectedStep : Color.cardBackground)
         .cornerRadius(8)
-        .padding([.leading, .trailing], selected ? 0 : 12)
+        .padding([.leading, .trailing], selected == true ? 0 : 12)
+    }
+
+    struct Model {
+        var currentStep: Int
+        var numberOfSteps: Int
+        var headline: String
+        var instructions: String
+        var availableWidth: CGFloat
+        var size: CGFloat = 0
+
+        init(currentStep: Int,
+             numberOfSteps: Int,
+             headline: String,
+             instructions: String,
+             availableWidth: CGFloat) {
+            self.currentStep = currentStep
+            self.numberOfSteps = numberOfSteps
+            self.headline = headline
+            self.instructions = instructions
+            self.availableWidth = availableWidth
+            let width = availableWidth - 72 // considering horizontal paddings
+
+            size = "Step \(currentStep)/\(numberOfSteps)"
+                .height(font: .systemFont(ofSize: 12),
+                        width: width)
+
+            size += 16
+            size += headline.height(font: .systemFont(ofSize: 22),
+                                          width: width)
+            size += 16
+            size += instructions.height(font: .systemFont(ofSize: 16),
+                                              width: width)
+            size += 48
+        }
     }
 }
 
@@ -242,5 +181,14 @@ struct CookNowScene_Previews: PreviewProvider {
         CookNowScene()
             .preferredColorScheme(.dark)
         CookNowScene()
+    }
+}
+
+extension String {
+    func height(font: UIFont, width: CGFloat) -> CGFloat {
+        let attrString = NSAttributedString(string: self,
+                                            attributes: [.font: font])
+        let bounds = attrString.boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        return bounds.height
     }
 }
