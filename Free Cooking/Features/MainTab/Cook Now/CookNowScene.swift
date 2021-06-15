@@ -12,18 +12,61 @@ struct CookNowScene: View {
     @State private var y: CGFloat = 250
     @State private var current = 0
 
+    init() {
+        UITableView.appearance().backgroundColor = UIColor(named: "defaultBackground")
+    }
+
     private let originalPosition: CGFloat = 250
-    private let items: [InstructionsCardView.Model] = Array.init(
-        repeating: InstructionsCardView.Model(currentStep: 1,
-                                              numberOfSteps: 10,
-                                              headline: "Start with the basics",
-                                              instructions: """
+    private let items: [InstructionsCardView.Model] = [
+        InstructionsCardView.Model(currentStep: 1,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics",
+                                   instructions: """
                                                                     Chop pumpkin and sweet potato into small chunks, put them to the bowl.
 
                                                                     Then add water and paprika. Select program no. 3 and cook for 20 mins.
                                                                     """,
-                                              availableWidth: UIScreen.main.bounds.width),
-        count: 6)
+                                   availableWidth: UIScreen.main.bounds.width),
+        InstructionsCardView.Model(currentStep: 2,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics 2",
+                                   instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+                                                                    """,
+                                   availableWidth: UIScreen.main.bounds.width),
+        InstructionsCardView.Model(currentStep: 1,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics",
+                                   instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+
+                                                                    Then add water and paprika. Select program no. 3 and cook for 20 mins.
+                                                                    """,
+                                   availableWidth: UIScreen.main.bounds.width),
+        InstructionsCardView.Model(currentStep: 2,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics 2",
+                                   instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+                                                                    """,
+                                   availableWidth: UIScreen.main.bounds.width),
+        InstructionsCardView.Model(currentStep: 1,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics",
+                                   instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+
+                                                                    Then add water and paprika. Select program no. 3 and cook for 20 mins.
+                                                                    """,
+                                   availableWidth: UIScreen.main.bounds.width),
+        InstructionsCardView.Model(currentStep: 2,
+                                   numberOfSteps: 10,
+                                   headline: "Start with the basics 2",
+                                   instructions: """
+                                                                    Chop pumpkin and sweet potato into small chunks, put them to the bowl.
+                                                                    """,
+                                   availableWidth: UIScreen.main.bounds.width),
+    ]
 
     var body: some View {
         ZStack {
@@ -66,43 +109,52 @@ struct CookNowScene: View {
     }
 
     var carrouselView: some View {
-        VStack(spacing: 0) {
-            ForEach(0..<items.count) { value in
-                InstructionsCardView(model: items[value], selected: value == current)
-                    .padding([.leading, .trailing], 16)
-                Spacer(minLength: 12)
-                    .opacity(value == current ? 1 : 0)
+        List {
+            VStack(spacing: 0) {
+                ForEach(0..<items.count) { value in
+                    InstructionsCardView(model: items[value],
+                                         selected: value == current)
+                }
             }
+            .listRowBackground(Color.defaultBackground)
+            .offset(y: self.y)
+            .highPriorityGesture(DragGesture().onEnded({ value in
+                let numberOfItems: CGFloat = CGFloat(items.count)
+
+                // Going up
+                if value.translation.height > 0 {
+                    let previous = self.current
+                    self.current -= 1
+                    self.current = max(0, self.current)
+                    print("going up current: \(self.current)")
+                    print("going up item size: \(self.items[self.current].size)")
+
+                    if self.y + self.items[self.current].size > self.items[self.current].size {
+                        self.y = self.originalPosition
+                    } else if previous != self.items.count - 1 {
+                        self.y += self.items[self.current].size - 12
+                    }
+                } else { // Going down
+                    if self.current != self.items.count - 1 {
+                        self.current += 1
+                        self.current = min(self.items.count - 1, self.current)
+                        print("going down current: \(self.current)")
+                        print("going down item size: \(self.items[self.current].size)")
+
+                        //                    if !(self.y - self.items[self.current].size < -(self.items[self.current].size * (numberOfItems - 3))) {
+                        //                        self.y -= (self.items[self.current].size - 12)
+                        //                    }
+                        if self.current == self.items.count - 1 {
+                            self.y -= self.items[self.current].size / 2
+                        } else {
+                            self.y -= (self.items[self.current].size - 12)
+                        }
+                    }
+                }
+            }))
+            .animation(.spring())
         }
-        .offset(y: self.y)
-        .highPriorityGesture(DragGesture().onEnded({ value in
-            let numberOfItems: CGFloat = CGFloat(items.count)
-
-            // Going up
-            if value.translation.height > 0 {
-                let previous = self.current
-                self.current -= 1
-                self.current = max(0, self.current)
-                print("going up current: \(self.current)")
-                print("going up item size: \(self.items[self.current].size)")
-
-                if self.y + self.items[self.current].size > self.items[self.current].size {
-                    self.y = self.originalPosition
-                } else if previous != self.items.count - 1 {
-                    self.y += self.items[self.current].size - 12
-                }
-            } else { // Going down
-                self.current += 1
-                self.current = min(self.items.count - 1, self.current)
-                print("going down current: \(self.current)")
-                print("going down item size: \(self.items[self.current].size)")
-
-                if !(self.y - self.items[self.current].size < -(self.items[self.current].size * (numberOfItems - 3))) {
-                    self.y -= (self.items[self.current].size - 12)
-                }
-            }
-        }))
-        .animation(.spring())
+        .ignoresSafeArea()
     }
 }
 
@@ -132,13 +184,16 @@ private struct InstructionsCardView: View {
                 .fontWeight(.light)
                 .font(.system(size: 16))
                 .multilineTextAlignment(.leading)
+                .lineLimit(nil)
                 .foregroundColor(selected == true ? Color.white : .primaryLabel)
         }
         .padding(24)
-        .frame(height: selected == true ? model.size : model.size - 12)
+        .frame(height: model.size)
         .background(selected == true ? Color.selectedStep : Color.cardBackground)
         .cornerRadius(8)
         .padding([.leading, .trailing], selected == true ? 0 : 12)
+        Spacer(minLength: 12)
+            .opacity(selected ? 1 : 0)
     }
 
     struct Model {
@@ -167,11 +222,12 @@ private struct InstructionsCardView: View {
 
             size += 16
             size += headline.height(font: .systemFont(ofSize: 22),
-                                          width: width)
+                                    width: width)
             size += 16
             size += instructions.height(font: .systemFont(ofSize: 16),
-                                              width: width)
+                                        width: width)
             size += 48
+            size += 24
         }
     }
 }

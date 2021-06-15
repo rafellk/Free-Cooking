@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabScene: View {
     
     private var screenWidth: CGFloat = UIScreen.main.bounds.width - 32
-    @State private var selectedTab = "Inspirations"
+    @State private var selectedTab = "Cook now!"
 
     private var tabs = [
         TabItem(title: "Inspirations", icon: "lightbulb"),
@@ -24,19 +24,21 @@ struct MainTabScene: View {
             Color.defaultBackground
                 .ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                GeometryReader { _ in
-                    ZStack {
-                        InspirationsScene()
-                            .opacity(selectedTab == "Inspirations" ? 1 : 0)
-                        MyRecipesScene()
-                            .opacity(selectedTab == "My recipes" ? 1 : 0)
-                        CookNowScene()
-                            .opacity(selectedTab == "Cook now!" ? 1 : 0)
-                        Text("Settings")
-                            .opacity(selectedTab == "Settings" ? 1 : 0)
-                    }
-                }
+            InspirationsScene()
+                .opacity(selectedTab == "Inspirations" ? 1 : 0)
+                .padding(.bottom, 70)
+            MyRecipesScene()
+                .opacity(selectedTab == "My recipes" ? 1 : 0)
+                .padding(.bottom, 70)
+            CookNowScene()
+                .opacity(selectedTab == "Cook now!" ? 1 : 0)
+                .padding(.bottom, 70)
+            Text("Settings")
+                .opacity(selectedTab == "Settings" ? 1 : 0)
+                .padding(.bottom, 70)
+
+            VStack {
+                Spacer()
                 HStack {
                     Spacer()
                     ForEach(tabs, id: \.self) { tab in
